@@ -56,30 +56,21 @@ public class MakeChange {
 		DecimalFormat df = new DecimalFormat("#.00");
 		String change = df.format(changeDub);
 		
-		int twenties = (changeDue - (changeDue % 2000)) / 2000;
-		changeDue = changeDue - (twenties * 2000);
+		int twenties = 0, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0;
 		
-		int tens = (changeDue - (changeDue % 1000)) / 1000;
-		changeDue = changeDue - (tens * 1000);
-
-		int fives = (changeDue - (changeDue % 500)) / 500;
-		changeDue = changeDue - (fives * 500);
+		int[] divisor = {2000, 1000, 500, 100, 25, 10, 5};
+		int[] denominations = {twenties, tens, fives, ones, quarters, dimes, nickels};
 		
-		int ones = (changeDue - (changeDue % 100)) / 100;
-		changeDue = changeDue - (ones * 100);
-		
-		int quarters = (changeDue - (changeDue % 25)) / 25;
-		changeDue = changeDue - (quarters * 25);
-		
-		int dimes = (changeDue - (changeDue % 10)) / 10;
-		changeDue = changeDue - (dimes * 10);
-		
-		int nickels = (changeDue - (changeDue % 5)) / 5;
-		changeDue = changeDue - (nickels * 5);
+//		determine how many of each denomination to give back
+		for (int i = 0; i < denominations.length; i++) {
+			denominations[i] = (changeDue - (changeDue % divisor[i])) / divisor[i];
+			changeDue = changeDue - (denominations[i] * divisor[i]);	
+		}
 
 		int pennies = changeDue;
 		
-		printChangeDue(change, twenties, tens, fives, ones, quarters, dimes, nickels, pennies);
+		printChangeDue(change, denominations[0], denominations[1], denominations[2], denominations[3], 
+				denominations[4], denominations[5], denominations[6], pennies);
 	}
 	
 	public static int convertToPennies(double money) {
