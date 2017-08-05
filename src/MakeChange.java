@@ -21,7 +21,7 @@ public class MakeChange {
 		getAmountTendered(price, input);
 		input.close();
 	}
-	
+
 	public static void getAmountTendered(double price, Scanner input) {
 		double tendered;
 
@@ -34,102 +34,70 @@ public class MakeChange {
 				System.out.println("You need to poney up some more money.");
 			}
 		} while (tendered < price);
-		
+
 		if (tendered == price) {
 			System.out.println("Thanks for exact change!");
 		}
-		
+
 		if (tendered > price) {
 			makeChange(tendered, price);
 		}
 	}
-	
+
 	public static void makeChange(double tendered, double price) {
 		int tenderedPennies = convertToPennies(tendered);
 		int pricePennies = convertToPennies(price);
-		
+
 		int changeDue = tenderedPennies - pricePennies;
-		
-		double changeDub = ((double)(changeDue)) / 100;
-		
+
+		double changeDub = ((double) (changeDue)) / 100;
+
 		int twenties = 0, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0;
-		
-		int[] divisor = {2000, 1000, 500, 100, 25, 10, 5};
-		int[] denominations = {twenties, tens, fives, ones, quarters, dimes, nickels};
-		
-//		determine how many of each denomination to give back
+
+		int[] divisor = { 2000, 1000, 500, 100, 25, 10, 5 };
+		int[] denominations = { twenties, tens, fives, ones, quarters, dimes, nickels };
+
+		// determine how many of each denomination to give back
 		for (int i = 0; i < denominations.length; i++) {
 			denominations[i] = (changeDue - (changeDue % divisor[i])) / divisor[i];
-			changeDue = changeDue - (denominations[i] * divisor[i]);	
+			changeDue = changeDue - (denominations[i] * divisor[i]);
 		}
 
 		int pennies = changeDue;
-		
-		printChangeDue(changeDub, denominations[0], denominations[1], denominations[2], denominations[3], 
-				denominations[4], denominations[5], denominations[6], pennies);
+
+		printChangeDue(changeDub, denominations, pennies);
 	}
-	
+
 	public static int convertToPennies(double money) {
-		int pennies = (int)(Math.round(money * 100));
+		int pennies = (int) (Math.round(money * 100));
 		return pennies;
 	}
-	
-	public static void printChangeDue(double change, int twenty, int ten, int five, int one, int quart, int dime, 
-			int nick, int pen) {
-//		Ensure printing of at 2 decimal places
+
+	public static void printChangeDue(double change, int[] denominations, int pen) {
+		// Ensure printing of at 2 decimal places
 		DecimalFormat df = new DecimalFormat("#.00");
 		String changeStr = df.format(change);
-		
+
 		System.out.println("\n**************************\n");
 		System.out.println("Change Due: $" + changeStr);
 		System.out.println("**************************\n");
-		
-		if(twenty > 1) {
-			System.out.println(twenty + " twenty dollar bills");
-		} else if(twenty > 0) {
-			System.out.println(twenty + " twenty dollar bill");			
+
+		String bill = " dollar bill";
+		String[] value = { " twenty" + bill, " ten" + bill, " five" + bill, " one" + bill, " quarter", " dime",
+				" nickel" };
+
+		for (int i = 0; i < denominations.length; i++) {
+			if (denominations[i] > 1) {
+				System.out.println(denominations[i] + value[i] + "s");
+			} else if (denominations[i] > 0) {
+				System.out.println(denominations[i] + value[i]);
+			}
 		}
 
-		if(ten > 1) {
-			System.out.println(ten + " ten dollar bills");
-		} else if(ten > 0) {
-			System.out.println(ten + " ten dollar bill");			
-		}
-
-		if(five > 1) {
-			System.out.println(five + " five dollar bills");
-		} else if(five > 0) {
-			System.out.println(five + " five dollar bill");			
-		}
-
-		if(one > 1) {
-			System.out.println(one + " one dollar bills");
-		} else if(one > 0) {
-			System.out.println(one + " one dollar bill");			
-		}
-		
-		if(quart > 1) {
-			System.out.println(quart + " quarters");
-		} else if(quart > 0) {
-			System.out.println(quart + " quarter");			
-		}
-		
-		if(dime > 1) {
-			System.out.println(dime + " dimes");
-		} else if(dime > 0) {
-			System.out.println(dime + " dime");			
-		}
-		
-		if(nick > 1) {
-			System.out.println(nick + " nickels");
-		} else if(nick > 0) {
-			System.out.println(nick + " nickel");			
-		}
-		
-		if(pen > 1) {
+		if (pen > 1) {
 			System.out.println(pen + " pennies\n");
-		} else if(pen > 0) {
-			System.out.println(pen + " penny\n");			
+		} else if (pen > 0) {
+			System.out.println(pen + " penny\n");
 		}
 
 	}
