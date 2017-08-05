@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /* In the cash register we will calculate the amount of change returned to a customer based on the 
@@ -51,6 +52,10 @@ public class MakeChange {
 		
 		double changeDub = ((double)(changeDue)) / 100;
 		
+//		Ensure printing of at 2 decimal places
+		DecimalFormat df = new DecimalFormat("#.00");
+		String change = df.format(changeDub);
+		
 		int twenties = (changeDue - (changeDue % 2000)) / 2000;
 		changeDue = changeDue - (twenties * 2000);
 		
@@ -74,7 +79,7 @@ public class MakeChange {
 
 		int pennies = changeDue;
 		
-		printChangeDue(changeDub, twenties, tens, fives, ones, quarters, dimes, nickels, pennies);
+		printChangeDue(change, twenties, tens, fives, ones, quarters, dimes, nickels, pennies);
 	}
 	
 	public static int convertToPennies(double money) {
@@ -82,7 +87,7 @@ public class MakeChange {
 		return pennies;
 	}
 	
-	public static void printChangeDue(double change, int twenty, int ten, int five, int one, int quart, int dime, int nick, int pen) {
+	public static void printChangeDue(String change, int twenty, int ten, int five, int one, int quart, int dime, int nick, int pen) {
 		
 		System.out.println("\n**************************\n");
 		System.out.println("Change Due: $" + change);
