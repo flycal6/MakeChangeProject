@@ -69,12 +69,12 @@ public class MakeChange {
 		int dimes = (changeDue - (changeDue % 10)) / 10;
 		changeDue = changeDue - (dimes * 10);
 		
-		int nickles = (changeDue - (changeDue % 5)) / 5;
-		changeDue = changeDue - (nickles * 5);
+		int nickels = (changeDue - (changeDue % 5)) / 5;
+		changeDue = changeDue - (nickels * 5);
 
 		int pennies = changeDue;
 		
-		printChangeDue(changeDub, twenties, tens, fives, ones, quarters, dimes, nickles, pennies);
+		printChangeDue(changeDub, twenties, tens, fives, ones, quarters, dimes, nickels, pennies);
 	}
 	
 	public static int convertToPennies(double money) {
@@ -125,9 +125,9 @@ public class MakeChange {
 		}
 		
 		if(nick > 1) {
-			System.out.println(nick + " nickles");
+			System.out.println(nick + " nickels");
 		} else if(nick > 0) {
-			System.out.println(nick + " nickle");			
+			System.out.println(nick + " nickel");			
 		}
 		
 		if(pen > 1) {
