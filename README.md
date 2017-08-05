@@ -4,10 +4,10 @@
 First Graded Homework
 
 ### Goals
-Create a virtual cash register:
-Accept a price
-Accept amount tendered
-Print out number of each currency type due back.
+Create a virtual cash register:  
+* Accept a price  
+* Accept amount tendered  
+* Print out number of each currency type due back.  
 
 #### Example
 
