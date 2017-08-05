@@ -87,14 +87,55 @@ public class MakeChange {
 		System.out.println("\n**************************\n");
 		System.out.println("Change Due: $" + change);
 		System.out.println("**************************\n");
-		System.out.println(twenty + " twenty dollar bills \n" +
-				ten + " ten dollar bills\n" +
-				five + " five dollar bills\n" +
-				one + " one dollar bills\n" + 
-				quart + " quarters\n" + 
-				dime + " dimes\n" + 
-				nick + " nickles\n" + 
-				pen + " pennies\n");
+		
+		if(twenty > 1) {
+			System.out.println(twenty + " twenty dollar bills");
+		} else if(twenty > 0) {
+			System.out.println(twenty + " twenty dollar bill");			
+		}
+
+		if(ten > 1) {
+			System.out.println(ten + " ten dollar bills");
+		} else if(ten > 0) {
+			System.out.println(ten + " ten dollar bill");			
+		}
+
+		if(five > 1) {
+			System.out.println(five + " five dollar bills");
+		} else if(five > 0) {
+			System.out.println(five + " five dollar bill");			
+		}
+
+		if(one > 1) {
+			System.out.println(one + " one dollar bills");
+		} else if(one > 0) {
+			System.out.println(one + " one dollar bill");			
+		}
+		
+		if(quart > 1) {
+			System.out.println(quart + " quarters");
+		} else if(quart > 0) {
+			System.out.println(quart + " quarter");			
+		}
+		
+		if(dime > 1) {
+			System.out.println(dime + " dimes");
+		} else if(dime > 0) {
+			System.out.println(dime + " dime");			
+		}
+		
+		if(nick > 1) {
+			System.out.println(nick + " nickles");
+		} else if(nick > 0) {
+			System.out.println(nick + " nickle");			
+		}
+		
+		if(pen > 1) {
+			System.out.println(pen + " pennies\n");
+		} else if(pen > 0) {
+			System.out.println(pen + " penny\n");			
+		}
+
 	}
 
 }
