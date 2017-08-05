@@ -52,10 +52,6 @@ public class MakeChange {
 		
 		double changeDub = ((double)(changeDue)) / 100;
 		
-//		Ensure printing of at 2 decimal places
-		DecimalFormat df = new DecimalFormat("#.00");
-		String change = df.format(changeDub);
-		
 		int twenties = 0, tens = 0, fives = 0, ones = 0, quarters = 0, dimes = 0, nickels = 0;
 		
 		int[] divisor = {2000, 1000, 500, 100, 25, 10, 5};
@@ -69,7 +65,7 @@ public class MakeChange {
 
 		int pennies = changeDue;
 		
-		printChangeDue(change, denominations[0], denominations[1], denominations[2], denominations[3], 
+		printChangeDue(changeDub, denominations[0], denominations[1], denominations[2], denominations[3], 
 				denominations[4], denominations[5], denominations[6], pennies);
 	}
 	
@@ -78,10 +74,14 @@ public class MakeChange {
 		return pennies;
 	}
 	
-	public static void printChangeDue(String change, int twenty, int ten, int five, int one, int quart, int dime, int nick, int pen) {
+	public static void printChangeDue(double change, int twenty, int ten, int five, int one, int quart, int dime, 
+			int nick, int pen) {
+//		Ensure printing of at 2 decimal places
+		DecimalFormat df = new DecimalFormat("#.00");
+		String changeStr = df.format(change);
 		
 		System.out.println("\n**************************\n");
-		System.out.println("Change Due: $" + change);
+		System.out.println("Change Due: $" + changeStr);
 		System.out.println("**************************\n");
 		
 		if(twenty > 1) {
