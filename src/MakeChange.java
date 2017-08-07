@@ -93,7 +93,8 @@ public class MakeChange {
 				System.out.println(denominations[i] + value[i]);
 			}
 		}
-
+		
+//		Pennies kept separate due to spelling
 		if (pen > 1) {
 			System.out.println(pen + " pennies\n");
 		} else if (pen > 0) {
